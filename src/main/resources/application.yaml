@@ -1,0 +1,31 @@
+server:
+  port: ${PORT:0}
+
+management:
+  cloudfoundry:
+    skip-ssl-validation: true
+    enabled: true
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: USER
+      show-details: always
+    configprops:
+      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+    env:
+      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+
+#JPA properties
+  spring:
+    datasource:
+      platform: h2
+    jpa:
+      show-sql: true
+      generate-ddl: false
+      hibernate:
+        ddl-auto: none
+
